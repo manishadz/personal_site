@@ -116,43 +116,33 @@
                             <input type="hidden" name="id" value="">
                             <div class="row">
                                 <div class="col">
-                                    <label for="">Product Name</label><br>
-                                    <input type="text" class="form-control"  name="name" placeholder="">
+                                    <label for="">Product Title</label><br>
+                                    <input type="text" class="form-control"  name="title" placeholder="">
                                 </div>
                                 <div class="col">
-                                    <label for="">Category</label><br>
-                                    <select class="form-control" name="category">
-                                        <option>Art</option>
-                                        <option>car</option>
-                                        <option>phone</option>
-                                    </select>
+                                    <label for="">Product link</label><br>
+                                    <input type="text" class="form-control"  name="link" placeholder="">
                                 </div>
                             </div><br>
-                            <div class="mb-3">
-                                <div class="form-group">
-                                    <label for="">Description</label>
-                                    <textarea class="form-control" name="description" rows="3"></textarea>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="">Mini-Price</label><br>
-                                    <input type="number" class="form-control" name="min_price" placeholder="">
-                                </div>
-                                <div class="col">
-                                    <label for="">Max-price</label><br>
-                                    <input type="number" class="form-control" name="max_price" placeholder="">
-                                </div>
-                                <div class="col">
-                                    <label for="">End-time</label>
-                                    <input name="end_time" class="form-control" type="datetime-local" />
-                                </div>
-                            </div>
                             <br>
                             <div class="mb-3">
-                                <label for="">Upload Image</label>
+                                <label for="">Thumbnail</label>
                                 <input type="file" name="image" value="" required
                                     class="course form-control">
+                            </div>
+                            <div class="d-flex gap-2">
+                                <div class="form-check radio-style mb-20">
+                                    <input name="is_active" class="form-check-input" type="radio" value="1"
+                                        id="active">
+                                    <label class="form-check-label" for="active">
+                                        Active</label>
+                                </div>
+                                <div class="form-check radio-style mb-20">
+                                    <input name="is_active" class="form-check-input" type="radio" value="0"
+                                        id="inactive" checked>
+                                    <label class="form-check-label" for="inactive">
+                                        In Active</label>
+                                </div>
                             </div>
                             <div class="mb-3 col d-flex justify-content-between">
                                 <button type="submit" class="btn btn-primary">Add</button>
@@ -162,9 +152,6 @@
 
                         </form>
                     </div>
-
-
-                    <button type="submit " class="btn btn-success">Save</button>
                 </form>
             </div>
         </div>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectStoreRequest;
+use App\Http\Requests\ProjectUpdateRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -14,9 +16,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $project = Project::first();
+        $projects = Project::get();
 
-        return view('project.index', compact('project'));
+        return view('project.index', compact('projects'));
     }
 
     /**
@@ -35,9 +37,26 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectStoreRequest $request)
     {
-        //
+        $validated = $request->validated();
+        if($request->hasfile('image'))
+        {
+            $file = $request->file('image');
+            $extenstion = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extenstion;
+            $file->move('uploads/project/', $filename);
+            $validated["image"] = $filename;
+        }
+        $project = Project::create($validated);
+        if ($project) {
+            session()->flash('success', 'project added successfully');
+        } else {
+            session()->flash('error', 'somehing went wrong');
+        }
+
+
+        return redirect()->route('project.index');
     }
 
     /**
@@ -57,9 +76,10 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
-        //
+        return view('project.edit', compact('project'));
+
     }
 
     /**
@@ -69,9 +89,30 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjectUpdateRequest $request,  $id)
     {
-        //
+
+
+        $project = Project::findOrFail($id);
+        $validated = $request->validated();
+        if($request->hasfile('image'))
+        {
+            $file = $request->file('image');
+            $extenstion = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extenstion;
+            $file->move('uploads/project/', $filename);
+            $validated["image"] = $filename;
+        }
+        $success = $project->update ($validated);
+        if ($success) {
+            session()->flash('success', 'project added successfully');
+        } else {
+            session()->flash('error', 'somehing went wrong');
+        }
+
+
+        return redirect()->route('project.index');
+
     }
 
     /**
@@ -80,8 +121,15 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        //
-    }
+      
+        $success = $project->delete();
+        if ($success) {
+            session()->flash('success', 'project deleted');
+        } else {
+            session()->flash('error', 'something went wrong');
+        }
+        return to_route('project.index');
+}
 }

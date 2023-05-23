@@ -8,7 +8,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="titlemb-30">
-                            <h2>Skills</h2>
+                            <h2> messages</h2>
                         </div>
                     </div>
                     <!-- end col -->
@@ -20,7 +20,7 @@
                                         <a href="/">Dashboard </a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">
-                                        Skill
+                                        message
                                     </li>
                                 </ol>
                             </nav>
@@ -38,7 +38,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="container">
-                    <h1>My Skill <a href="{{ route('skill.create') }}" class="btn btn-primary float-end ">Add </a></h1>
+                    <h1>message received </h1>
                     <br>
                     <hr>
 
@@ -51,46 +51,37 @@
                                     <h6>sn</h6>
                                 </th>
                                 <th>
-                                    <h6>Title</h6>
+                                    <h6>Name</h6>
                                 </th>
                                 <th>
-                                    <h6>Description</h6>
+                                    <h6>Email</h6>
                                 </th>
                                 <th>
-                                    <h6>level</h6>
+                                    <h6>Subject</h6>
                                 </th>
                                 <th>
-                                    <h6>status</h6>
+                                    <h6>Message</h6>
                                 </th>
-                                <th>
-                                    <h6>Actions</h6>
-                                </th>
+
                             </tr>
                             <!-- end table row-->
                         </thead>
                         <tbody>
-                            @forelse ($skills as $skill)
+                            @forelse ($contacts as $contact)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $skill->title }}</td>
-                                    <td>{{ $skill->description }}</td>
-                                    <td>{{ $skill->level }}</td>
-                                    <td>
-                                        @if ($skill->is_active)
-                                            <span class="status-btn active-btn">Active</span>
-                                        @else
-                                            <span class="status-btn close-btn">In Active</span>
-                                        @endif
-                                    </td>
+                                    <td>{{ $contact->name }}</td>
+                                    <td>{{ $contact->email }}</td>
+                                    <td>{{ $contact->subject }}</td>
+                                    <td>{{ $contact->message }}</td>
                                     <td class="d-flex gap-3 action">
-                                        <a href="{{ route('skill.edit', $skill->id) }}" class="text-success">
-                                            <i class="lni lni-pencil-alt"></i>
-                                        </a>
-                                        <form action="{{ route('skill.destroy', $skill->id) }}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="text-danger"><i
-                                                    class="lni lni-trash-can"></i></button>
+                                    <form action="{{ route('contact.delete', $contact->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="text-danger"><i
+                                                class="lni lni-trash-can"></i></button>
+                                    </form>
+                                    </td>
                                         </form>
                                     </td>
                                 </tr>
@@ -107,8 +98,3 @@
 
 
 
-{{-- <form action="{{ route('skills.destroy', $member->id) }}" method="post">
-    @csrf
-    @method('delete')
-    <button type="submit" class="btn btn-danger">Delete</button>
-</form> --}}

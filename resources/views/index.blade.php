@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>portfolio</title>
+    <title>Manish Adhikari</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
@@ -26,15 +26,9 @@
     <link href="{{ asset('assets/vendor/owl.carousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
-    <!-- =======================================================
-  * Template Name: MyResume - v2.1.0
-  * Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
 
 <body>
@@ -50,8 +44,8 @@
                 <li><a href="#hero"><i class="bx bx-home"></i> <span>Home</span></a></li>
                 <li><a href="#about"><i class="bx bx-user"></i> <span>About</span></a></li>
                 {{-- <li><a href="#resume"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li> --}}
-                <li><a href="#portfolio"><i class="bx bx-book-content"></i> <span>Projects</span></a></li>
-                <li><a href="#exprience"><i class="bx bx-server"></i> <span>exprience</span></a></li>
+                <li><a href="#project"><i class="bx bx-book-content"></i> <span>Projects</span></a></li>
+                {{-- <li><a href="#exprience"><i class="bx bx-server"></i> <span>exprience</span></a></li> --}}
                 <li><a href="#contact"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
 
             </ul>
@@ -74,12 +68,12 @@
             <p>I'm <span class="typed" data-typed-items="Web application developer, Ethical Hacker, student"></span>
             </p>
             <div class="social-links">
-                <a href="https://twitter.com/manish_adz" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="https://www.facebook.com/adhikariman.adhikari/" class="facebook"><i
-                        class="bx bxl-facebook"></i></a>
-                <a href="https://www.instagram.com/manish_adz/" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/manish-adhikari-797b6a1ba/" class="linkedin"><i
-                        class="bx bxl-linkedin"></i></a>
+                <a href={{ $settings['twitter'] }} target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href={{ $settings['facebook'] }} target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href={{ $settings['instagram'] }} target="_blank" class="instagram"><i
+                        class="bx bxl-instagram"></i></a>
+                <a href={{ $settings['medium'] }} target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+                <a href={{ $settings['hackerone'] }} target="_blank" class="medium"><i class="bx bxl-hackerone"></i></a>
             </div>
         </div>
     </section><!-- End Hero -->
@@ -147,27 +141,6 @@
             </div>
         </section><!-- End Skills Section -->
 
-        <!-- ======= Resume Section ======= -->
-        {{-- <section id="resume" class="resume">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-title">
-                    <h2>Resume</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-                        sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
-                        ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-mid-4">
-                        <div class="container1">
-                            <button class="btn btn-primary">click me</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End Resume Section --> --}}
 
         <!-- ======= Portfolio Section ======= -->
         <section id="project" class="project section-bg">
@@ -178,77 +151,24 @@
                 </div>
 
                 <div class="row project-container" data-aos="fade-up" data-aos-delay="200">
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                         
+                    @foreach ($projects as $project)
+                        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                            <div class="portfolio-wrap">
+                                <a href="{{ $project->link }}" target="_blank">
+                                    <img src="{{ asset('uploads/project/' . @$project->image) }}" class="img-fluid"
+                                        alt="">
+                                </a>
+                                <div class="portfolio-info">
+                                    <a href=""></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
 
             </div>
-        </section><!-- End Portfolio Section -->
-
-        <!-- ======= Services Section ======= -->
-        <section id="exprience" class="services">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-title">
-                    <h2>exprience</h2>
-
-                </div>
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-md-4">
-                            <div class="main">
-                                <div class="service">
-                                    <div class="service-logo">
-                                        <img src="assets/img/play1.png">
-                                    </div>
-                                    <h4>App Design</h4>
-                                    <p>Not yet done any project.I will be very happy to project which is based on my
-                                        studies.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="main">
-                                <div class="service">
-                                    <div class="service-logo">
-                                        <img src="assets/img/world-wide-web.png">
-                                    </div>
-                                    <h4>Development</h4>
-                                    <p>i have done only one project which is static website .to visit my project
-                                        <br>just click the link below.
-                                    </p>
-                                    <a href="https://www.graphiczone.com.np/">graphiczone.com.np</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="main">
-                                <div class="service">
-                                    <div class="service-logo">
-                                        <img src="assets/img/career.png">
-                                    </div>
-                                    <h4>Freelancer</h4>
-                                    <p> I have not done any project on freelancer.I will be very happy to project which
-                                        is based on my studies. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-        </section><!-- End Services Section -->
-
+        </section>
+        <!-- End Portfolio Section -->
 
         <!-- ======= Contact Section ======= -->
         <section id="contact" class="contact">
@@ -265,22 +185,20 @@
                             <div class="address">
                                 <i class="icofont-google-map"></i>
                                 <h4>Location:</h4>
-                                <p><b>primary address:</b></p>
-                                <p>Lalbandi, Sarlahi, Nepal</p>
-                                <p><b>secondary address:</b></p>
-                                <p>bhaktapur ,kathmandu</p>
+                                <p><b>{{ $settings['location'] }}</b></p>
+
                             </div>
 
                             <div class="email">
                                 <i class="icofont-envelope"></i>
                                 <h4>Email:</h4>
-                                <p>sdark7175@gmail.com</p>
+                                <p>{{ $settings['email'] }}</p>
                             </div>
 
                             <div class="phone">
                                 <i class="icofont-phone"></i>
                                 <h4>Call:</h4>
-                                <p>+977 9844416810</p>
+                                <p>{{ $settings['contact'] }}</p>
                             </div>
 
                         </div>
@@ -288,24 +206,25 @@
                     </div>
 
                     <div class="col-lg-8 mt-5 mt-lg-0">
-
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                        @include('common.flash-message')
+                        <form action="{{ route('contact.save') }}" method="post" enctype="multipart/form-data" >
+                            @csrf
                             <div class="form-row">
                                 <div class="col-md-6 form-group">
-                                    <input type="text" name="name" class="form-control" id="name"
+                                    <input type="text" name="name" class="form-control" name="name"
                                         placeholder="Your Name" data-rule="minlen:4"
                                         data-msg="Please enter at least 4 chars" />
                                     <div class="validate"></div>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <input type="email" class="form-control" name="email" id="email"
+                                    <input type="email" class="form-control" name="email" name="email"
                                         placeholder="Your Email" data-rule="email"
                                         data-msg="Please enter a valid email" />
                                     <div class="validate"></div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="subject" id="subject"
+                                <input type="text" class="form-control" name="subject"
                                     placeholder="Subject" data-rule="minlen:4"
                                     data-msg="Please enter at least 8 chars of subject" />
                                 <div class="validate"></div>
@@ -314,11 +233,6 @@
                                 <textarea class="form-control" name="message" rows="5" data-rule="required"
                                     data-msg="Please write something for us" placeholder="Message"></textarea>
                                 <div class="validate"></div>
-                            </div>
-                            <div class="mb-3">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
                             </div>
                             <div class="text-center"><button type="submit">Send Message</button></div>
                         </form>
@@ -336,26 +250,20 @@
     <footer id="footer">
         <div class="container">
             <h3>Manish Adhikari</h3>
-            <p>There are three responses to a piece of design – yes, no, and WOW!.</p>
+            <p></p>
             <div class="social-links">
-                <a href="https://twitter.com/manish_adz" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="https://www.facebook.com/adhikariman.adhikari/" class="facebook"><i
+                <a href={{ $settings['twitter'] }} target="_blank" class="twitter"><i
+                        class="bx bxl-twitter"></i></a>
+                <a href={{ $settings['facebook'] }} target="_blank" class="facebook"><i
                         class="bx bxl-facebook"></i></a>
-                <a href="https://www.instagram.com/manish_adz/" class="instagram"><i
+                <a href={{ $settings['instagram'] }} target="_blank" class="instagram"><i
                         class="bx bxl-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/manish-adhikari-797b6a1ba/" class="linkedin"><i
-                        class="bx bxl-linkedin"></i></a>
+                <a href={{ $settings['medium'] }} target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
             </div>
             <div class="copyright">
-                &copy; Copyright@2020 <strong><span>Manish Adhikari</span></strong>. All Rights Reserved
+                &copy; Copyright@2023 <strong><span>Manish Adhikari</span></strong>. All Rights Reserved
             </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: [license-url] -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/ -->
 
-            </div>
         </div>
     </footer><!-- End Footer -->
 

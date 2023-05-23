@@ -1246,4 +1246,8 @@ body {
   }
 /*  side bar */
 
+.portfolio-wrap a:hover {
+    text-decoration: underline;
+    color: rgb(0, 0, 240);
+  }
 

@@ -1,38 +1,3 @@
-{{-- <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Portfolio') }}
-        </h2>
-
-        <div class="py-12">
-            <div class="container">
-                <h1>My Portfolio <a href="{{ route('portfolio.create') }}" class="btn btn-primary float-end ">Add </a></h1>
-                <br>
-            <hr>
-
-
-
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Images</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
-                      </tr>
-                    </thead>
-                  </table>
-            </div>
-        </div>
-    </x-slot>
-</x-app-layout> --}}
-
-
-
 @extends('layouts.app')
 
 @section('content')
@@ -73,24 +38,64 @@
         <div class="container">
             <h1>My Project <a href="{{ route('project.create') }}" class="btn btn-primary float-end ">Add </a></h1>
             <br>
-        <hr>
+            <hr>
+            @include('common.flash-message')
 
 
-
-            <table class="table">
+            <table class="table striped-table">
                 <thead>
-                  <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Images</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
-                  </tr>
+                    <tr>
+                        <th>
+                            <h6>sn</h6>
+                        </th>
+                        <th>
+                            <h6>Title</h6>
+                        </th>
+                        <th>
+                            <h6>image</h6>
+                        </th>
+                        <th>
+                            <h6>link</h6>
+                        </th>
+                        <th>
+                            <h6>status</h6>
+                        </th>
+                        <th>
+                            <h6>Actions</h6>
+                        </th>
+                    </tr>
+                    <!-- end table row-->
                 </thead>
-              </table>
+                <tbody>
+                    @forelse ($projects as $project)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $project->title }}</td>
+                            <th><img src="{{ asset('uploads/project/' . $project->image) }}" height="60px;" width="60px;" alt="Image"></th>
+                            <td>{{ $project->link }}</td>
+                            <td>
+                                @if ($project->is_active)
+                                    <span class="status-btn active-btn">Active</span>
+                                @else
+                                    <span class="status-btn close-btn">In Active</span>
+                                @endif
+                            </td>
+                            <td class="d-flex gap-3 action">
+                                <a href="{{ route('project.edit', $project->id) }}" class="text-success">
+                                    <i class="lni lni-pencil-alt"></i>
+                                </a>
+                                <form action="{{ route('project.destroy', $project->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="text-danger"><i class="lni lni-trash-can"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>NO DATA</tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection

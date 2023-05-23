@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SkillController;
 
 Route::get('/', HomePageController::class);
@@ -33,6 +35,17 @@ Route::middleware('auth','verified')->group(function () {
     Route::resource('project', ProjectController::class);
     // Route::get('portfolio',[PortfolioController::class,'index'])->name('portfolio.index');
     // Route::post('portfolio',[PortfolioController::class,'store'])->name('portfolio.store');
+
+// for settings
+
+Route::get('setting',[SettingController::class,'index'])->name('setting.index');
+Route::post('setting',[SettingController::class,'update'])->name('setting.update');
+
+//for contact page
+Route::post('contact',[ContactController::class,'save'])->name('contact.save');
+Route::get('contact',[ContactController::class,'index'])->name('contact.index');
+Route::delete('contact/{contact}',[ContactController::class,'delete'])->name('contact.delete');
+
 
 //for skill
 Route::resource('skill',SkillController::class);
