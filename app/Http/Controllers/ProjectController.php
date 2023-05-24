@@ -16,8 +16,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::get();
 
+        $projects = Project::get();
         return view('project.index', compact('projects'));
     }
 
@@ -123,7 +123,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-      
+
         $success = $project->delete();
         if ($success) {
             session()->flash('success', 'project deleted');
